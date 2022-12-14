@@ -3,7 +3,7 @@ name: Deploy - Elastic Beanstalk
 env:
   APP_NAME: eds-app-name-staging
   AWS_REGION: us-east-1
-  EB_ENV: eds-app-name-staging-env
+  EB_ENV: Edsappnamestaging-env
   S3_BUCKET: eds-app-name-staging-bucket
  
 
