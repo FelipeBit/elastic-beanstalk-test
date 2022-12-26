@@ -9,6 +9,27 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
+const pg = require('knex')({
+  client: 'pg',
+  connection: {
+    host : 'awseb-e-bwhnsiupcy-stack-awsebrdsdatabase-injacdsys5kb.ccheo5ezfklw.us-east-1.rds.amazonaws.com',
+    port : 5432,
+    user : 'DBUser',
+    password : 'DBPassword',
+    database : 'postgres',
+  },
+  searchPath: ['knex', 'public'],
+});
+
+pg.raw("SELECT 1").then(() => {
+  console.log("PostgreSQL connected");
+})
+.catch((e) => {
+  console.log("PostgreSQL not connected");
+  console.error(e);
+});
+
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
