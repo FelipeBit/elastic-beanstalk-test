@@ -1,10 +1,10 @@
 name: Deploy - Elastic Beanstalk
 
 env:
-  APP_NAME: eds-app-name-staging
+  APP_NAME: slp-content-api-test
   AWS_REGION: us-east-1
-  EB_ENV: Edsappnamestaging-env
-  S3_BUCKET: eds-app-name-staging-bucket
+  EB_ENV: Slpcontentapitest-env
+  S3_BUCKET: slp-content-api-test-bucket
  
 
 on:
