@@ -5,23 +5,76 @@ env:
   AWS_REGION: us-east-1
   EB_ENV: Slpcontentapitest-env
   S3_BUCKET: slp-content-api-test-bucket
+  # ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+  # ALGOLIA_APP_KEY: ${{ secrets.ALGOLIA_APP_KEY }}
+  # ALGOLIA_LEGACY_INDEX: ${{ secrets.ALGOLIA_LEGACY_INDEX }}
+  # ALGOLIA_PREFIX: ${{ secrets.ALGOLIA_PREFIX }}
+  # API_KEY: ${{ secrets.API_KEY }}
+  # APP_ENV: ${{ secrets.APP_ENV }}
+  # CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+  # CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+  # CLOUDINARY_CLOUD: ${{ secrets.CLOUDINARY_CLOUD }}
+  # DASHBOARD_CONTENTLIST_FREE_IPAD: ${{ secrets.DASHBOARD_CONTENTLIST_FREE_IPAD }}
+  # DB_DATABASE: ${{ secrets.DB_DATABASE }}
+  # DB_HOST: ${{ secrets.DB_HOST }}
+  # DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+  # DB_PORT: ${{ secrets.DB_PORT }}
+  # DB_USERNAME: ${{ secrets.DB_USERNAME }}
+  # JWTSECRET: ${{ secrets.JWTSECRET }}
+  # JWT_SIGN_SECRET: ${{ secrets.JWT_SIGN_SECRET }}
+  # NEW_RELIC_APP_NAME: ${{ secrets.NEW_RELIC_APP_NAME }}
+  # NEW_RELIC_LEVEL: ${{ secrets.NEW_RELIC_LEVEL }}
+  # NEW_RELIC_LICENSE_KEY: ${{ secrets.NEW_RELIC_LICENSE_KEY }}
+  # SESSION_PRIVATE_KEY: ${{ secrets.SESSION_PRIVATE_KEY }}
+  # SESSION_PUBLIC_KEY: ${{ secrets.SESSION_PUBLIC_KEY }}
+  # SLP_WEB_APP_URL: ${{ secrets.SLP_WEB_APP_URL }}
+  # PROCESSING_QUEUE_CRON_TIME: ${{ secrets.PROCESSING_QUEUE_CRON_TIME }}
+  # QUEUE_NAME: ${{ secrets.QUEUE_NAME }}
+  # REDIS_HOST: ${{ secrets.REDIS_HOST }}
+  # REDIS_PASS: ${{ secrets.REDIS_PASS }}
+  # REDIS_PORT: ${{ secrets.REDIS_PORT }}
+  # REDIS_PREFIX: ${{ secrets.REDIS_PREFIX }}
+  # REDIS_URL: ${{ secrets.REDIS_URL }}
+  # TODO_ALLOWED_PARENTS: ${{ secrets.TODO_ALLOWED_PARENTS }}
+  # TODO_ITEM_ALLOWED_TYPES: ${{ secrets.TODO_ITEM_ALLOWED_TYPES }}
+  # USER_API_KEY: ${{ secrets.USER_API_KEY }}
+  # USER_SERVICE: ${{ secrets.USER_SERVICE }}
+  # MKT_SCC_AGES: ${{ secrets.MKT_SCC_AGES }}
+  # DB_CLIENT: postgresql
+  # DB_SSL: true
+  # DB_POOL_MIN: 2
+  # DB_POOL_MAX: 10
+  # BODY_LIMIT: "1024kb"
+  # LIST_ROTATION_CRON_TIME: 0 * * * *
+  # DEBUG: "knex:*,app, app:*, worker, worker:*"
  
-
 on:
   push:
     branches:
       - staging
 
 jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run test
+        run: npm test
   deploy:
     runs-on: ubuntu-latest
-
     steps:
       - uses: actions/checkout@v2
-
       - uses: actions/setup-node@v1
         with:
-          node-version: 14
+          node-version: '14'
 
       - name: Install npm dependencies
         run: npm install
