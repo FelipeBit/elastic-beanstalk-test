@@ -12,9 +12,9 @@ var app = express();
 const pg = require('knex')({
   client: 'pg',
   connection: {
-    host : 'database-slp-test.ccheo5ezfklw.us-east-1.rds.amazonaws.com',
+    host : 'database-1.ccheo5ezfklw.us-east-1.rds.amazonaws.com',
     port : 5432,
-    user : 'postgres',
+    user : 'DBUser',
     password : 'DBPassword',
     database : 'postgres',
   },
