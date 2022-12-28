@@ -7,9 +7,9 @@ on:
       - 'feature/**'
   workflow_dispatch:
 env:
-  APP_NAME: slp-content-api-test
+  APP_NAME: slp-content-api-final-test
   AWS_REGION: us-east-1
-  EB_ENV: Slpcontentapitest-env
+  EB_ENV: Slpcontentapifinaltest-env
   S3_BUCKET: slp-content-api-test-bucket
   # ACCESS_TOKEN_EXPIRATION_DAYS: ${{ secrets.ACCESS_TOKEN_EXPIRATION_DAYS }}
   # ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
