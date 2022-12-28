@@ -1,0 +1,76 @@
+name: Content Service EB Tests
+on:
+  pull_request:
+    branches:
+      - 'main'
+      - 'staging'
+      - 'feature/**'
+  workflow_dispatch:
+env:
+  APP_NAME: slp-content-api-test
+  AWS_REGION: us-east-1
+  EB_ENV: Slpcontentapitest-env
+  S3_BUCKET: slp-content-api-test-bucket
+  # ACCESS_TOKEN_EXPIRATION_DAYS: ${{ secrets.ACCESS_TOKEN_EXPIRATION_DAYS }}
+  # ALGOLIA_API_KEY: ${{ secrets.ALGOLIA_API_KEY }}
+  # ALGOLIA_APP_KEY: ${{ secrets.ALGOLIA_APP_KEY }}
+  # ALGOLIA_LEGACY_INDEX: ${{ secrets.ALGOLIA_LEGACY_INDEX }}
+  # ALGOLIA_PREFIX: ${{ secrets.ALGOLIA_PREFIX }}
+  # API_KEY: ${{ secrets.API_KEY }}
+  # APP_ENV: ${{ secrets.APP_ENV }}
+  # CHARGIFY_API_KEY: ${{ secrets.CHARGIFY_API_KEY }}
+  # CHARGIFY_API_PASSWORD: ${{ secrets.CHARGIFY_API_PASSWORD }}
+  # CHARGIFY_API_URL: ${{ secrets.CHARGIFY_API_URL }}
+  # CHARGIFY_ENTERPRISE_LICENSE_COMPONENT_ID: ${{ secrets.CHARGIFY_ENTERPRISE_LICENSE_COMPONENT_ID }}
+  # CHARGIFY_IOS_LICENSE_COMPONENT_ID: ${{ secrets.CHARGIFY_IOS_LICENSE_COMPONENT_ID }}
+  # CHARGIFY_REFERRAL_LICENSE_COMPONENT_ID: ${{ secrets.CHARGIFY_REFERRAL_LICENSE_COMPONENT_ID }}
+  # CHARGIFY_REFERRAL_PRODUCT_ID: ${{ secrets.CHARGIFY_REFERRAL_PRODUCT_ID }}
+  # CHARGIFY_RETAIL_LICENSE_COMPONENT_ID: ${{ secrets.CHARGIFY_RETAIL_LICENSE_COMPONENT_ID }}
+  # CONTENT_SERVICE: ${{ secrets.CONTENT_SERVICE }}
+  # DB_DATABASE: ${{ secrets.DB_DATABASE }}
+  # DB_HOST: ${{ secrets.DB_HOST }}
+  # DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+  # DB_PORT: ${{ secrets.DB_PORT }}
+  # DB_USERNAME: ${{ secrets.DB_USERNAME }}
+  # DEBUG: ${{ secrets.DEBUG }}
+  # ITERABLE_API_KEY: ${{ secrets.ITERABLE_API_KEY }}
+  # ITERABLE_BASE_URL: ${{ secrets.ITERABLE_BASE_URL }}
+  # ITERABLE_REMINDER_CAMPAIGN_ID: ${{ secrets.ITERABLE_REMINDER_CAMPAIGN_ID }}
+  # ITERABLE_RESET_CAMPAIGN_ID: ${{ secrets.ITERABLE_RESET_CAMPAIGN_ID }}
+  # ITERABLE_SUPPORT_NOTIFICATION_CAMPAIGN_ID: ${{ secrets.ITERABLE_SUPPORT_NOTIFICATION_CAMPAIGN_ID }}
+  # ITERABLE_SUPPORT_NOTIFICATION_EMAIL: ${{ secrets.ITERABLE_SUPPORT_NOTIFICATION_EMAIL }}
+  # ITERABLE_WELCOME_CAMPAIGN_ID: ${{ secrets.ITERABLE_WELCOME_CAMPAIGN_ID }}
+  # ITERABLE_WELCOME_IOS_CAMPAIGN_ID: ${{ secrets.ITERABLE_WELCOME_IOS_CAMPAIGN_ID }}
+  # ITERABLE_WELCOME_REFERRAL_CAMPAIGN_ID: ${{ secrets.ITERABLE_WELCOME_REFERRAL_CAMPAIGN_ID }}
+  # JWTSECRET: ${{ secrets.JWTSECRET }}
+  # NEW_RELIC_APP_NAME: ${{ secrets.NEW_RELIC_APP_NAME }}
+  # NEW_RELIC_LEVEL: ${{ secrets.NEW_RELIC_LEVEL }}
+  # NEW_RELIC_LICENSE_KEY: ${{ secrets.NEW_RELIC_LICENSE_KEY }}
+  # REFERRAL_ELEGIBLE_PRODUCTS: ${{ secrets.REFERRAL_ELEGIBLE_PRODUCTS }}
+  # REFERRAL_LP_URL: ${{ secrets.REFERRAL_LP_URL }}
+  # SESSION_PRIVATE_KEY: ${{ secrets.SESSION_PRIVATE_KEY }}
+  # SESSION_PUBLIC_KEY: ${{ secrets.SESSION_PUBLIC_KEY }}
+  # SLP_WEB_APP_URL: ${{ secrets.SLP_WEB_APP_URL }}
+  # WEBHOOK_NOTIFICATION_SLACK: ${{ secrets.WEBHOOK_NOTIFICATION_SLACK }}
+  # WEBHOOK_SEND_NOTIFICATIONS: ${{ secrets.WEBHOOK_SEND_NOTIFICATIONS }}
+  # DB_CLIENT: postgresql
+  # DB_SSL: true
+  # DB_POOL_MIN: 2
+  # DB_POOL_MAX: 10
+  # BODY_LIMIT: "1024kb"
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+        
+      - name: Run test
+        run: npm test
+
